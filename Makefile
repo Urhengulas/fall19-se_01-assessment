@@ -1,2 +1,2 @@
 run:
-	python -m ex1.game
+	python -m sliding_game.game
