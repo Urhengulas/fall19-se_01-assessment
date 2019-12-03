@@ -21,6 +21,9 @@ class Board:
         self.board = list(*args, **kwargs)
 
     def move(self, from_where: int) -> None:
+        if self.check_input(from_where) is False:
+            raise ValueError
+
         board = self.board
         zero_pos = self.zero_pos
         direc = self.move_direction[from_where]
@@ -34,7 +37,7 @@ class Board:
 
         logging.info(f"direc={direc}")
 
-        if self.check_input(other_pos) is False:
+        if self.check_pos(other_pos) is False:
             raise IndexError
 
         # set value at zero_pos to other_val
@@ -49,10 +52,15 @@ class Board:
             return True
         return False
 
-    def check_input(self, pos: list):
+    def check_pos(self, pos: list):
         for val in pos:
             if val < 0 or val > 2:
                 return False
+        return True
+
+    def check_input(self, input: int):
+        if input not in [2, 4, 6, 8]:
+            return False
         return True
 
     def __repr__(self):
