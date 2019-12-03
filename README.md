@@ -3,6 +3,7 @@
 - [excercise 1: Sliding Puzzle](#excercise-1-sliding-puzzle)
   - [How to play](#how-to-play)
   - [Different starting board](#different-starting-board)
+  - [Best of <insert_your_number>](#best-of-insertyournumber)
   - [getting started](#getting-started)
 
 ## excercise 1: Sliding Puzzle
@@ -21,7 +22,10 @@ The goal of the game is to reach this board:
 ```
 
 ### Different starting board
-To start with a different board change the `board` on lines `79-82`. <br>
+To start with a different board change the `board` on lines `95-99`. <br>
+
+### Best of <insert_your_number>
+To change the amount of rounds you want to play adapt `max_games` in line `101`
 
 ### getting started
 1. Have python [installed](https://wiki.python.org/moin/BeginnersGuide/Download)
