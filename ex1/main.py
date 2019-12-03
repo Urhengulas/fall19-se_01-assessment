@@ -11,9 +11,9 @@ class Board:
 
     move_direction = {
         8: (-1, 0),
-        6: (0, -1),
-        2: (0, 1),
-        4: (1, 0),
+        2: (1, 0),
+        6: (0, 1),
+        4: (0, -1),
     }
 
     def __init__(self, *args, **kwargs):
