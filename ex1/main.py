@@ -10,8 +10,6 @@ class Board:
         4: (0, -1),
     }
 
-    dimensions = (4, 4)
-
     def __init__(self, *args, **kwargs):
         board = self.board = list(*args, **kwargs)
 
