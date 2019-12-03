@@ -25,9 +25,6 @@ class Board:
                     self.zero_pos = [row_num, col_num]
 
     def move(self, from_where: int) -> None:
-        if self.check_input(from_where) is False:
-            raise ValueError
-
         board = self.board
         zero_pos = self.zero_pos
         direc = self.move_direction[from_where]
@@ -63,7 +60,8 @@ class Board:
                 return False
         return True
 
-    def check_input(self, input: int):
+    @staticmethod
+    def check_input(input: int):
         if input not in [2, 4, 6, 8]:
             return False
         return True
@@ -95,28 +93,41 @@ if __name__ == "__main__":
     )
 
     board = Board([
-        [1, 2, 3, 9],
-        [4, 5, 6, 10],
-        [7, 8, 0, 11],
-        [12, 13, 14, 15]
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 0],
     ])
 
-    while True:
-        try:
-            print("\nState of the game board:")
-            print(board, end="")
-            i = int(input("Input -> "))
-            board.move(i)
-            if board.done() is True:
-                print("\nYou have won!!!")
-                print(board)
-                break
-        except IndexError:
-            print("! Invalid move. Please try again.")
-        except ValueError:
-            print("! Invalid input please use one of < 2 | 4 | 6 | 8 >")
-        except KeyboardInterrupt:
-            print("Reveived KeyboardInterrupt")
-            break
+    max_games = 3
+    game_results = []
 
-    print("Game over")
+    for num_game in range(max_games):
+        print("### NEW GAMES IS STARTING ###")
+
+        moves_counter = 0
+
+        while True:
+            try:
+                print("\nState of the game board:")
+                print(board, end="")
+                i = int(input("Input -> "))
+                if Board.check_input(i) is False:
+                    raise ValueError
+                board.move(i)
+                moves_counter += 1
+                if board.done() is True:
+                    print(
+                        f"\nYou have won!!! (and took {moves_counter} moves)"
+                    )
+                    print(board)
+                    game_results.append(moves_counter)
+                    break
+            except IndexError:
+                print("! Invalid move. Please try again.")
+            except ValueError:
+                print("! Invalid input please use one of < 2 | 4 | 6 | 8 >")
+            except KeyboardInterrupt:
+                print("Reveived KeyboardInterrupt")
+                break
+
+    print(f"Game over.\nYou took {min(game_results)} moves in your best game")
