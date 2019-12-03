@@ -4,9 +4,10 @@ import logging
 class Board:
 
     win_board = [
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 0]
+        [1,  2,  3,  4],
+        [5,  6,  7,  8],
+        [9,  10, 11, 12],
+        [13, 14, 15, 0]
     ]
 
     move_direction = {
@@ -16,12 +17,16 @@ class Board:
         4: (0, -1),
     }
 
+    dimensions = (4, 4)
+
     def __init__(self, *args, **kwargs):
         board = self.board = list(*args, **kwargs)
 
+        dim = self.dimensions = (len(board), len(board[0]))
+
         # identify zero_pos
-        for row_num in range(3):
-            for col_num in range(3):
+        for row_num in range(dim[0]):
+            for col_num in range(dim[1]):
                 if board[row_num][col_num] == 0:
                     self.zero_pos = [row_num, col_num]
 
@@ -58,8 +63,9 @@ class Board:
         return False
 
     def check_pos(self, pos: list):
-        for val in pos:
-            if val < 0 or val > 2:
+        dim = self.dimensions
+        for i in range(len(dim)):
+            if pos[i] < 0 or pos[i] >= dim[i]:
                 return False
         return True
 
@@ -82,9 +88,10 @@ if __name__ == "__main__":
     )
 
     board = Board([
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 0]
+        [1, 2, 3, 9],
+        [4, 5, 6, 10],
+        [7, 8, 0, 11],
+        [12, 13, 14, 15]
     ])
 
     while True:
