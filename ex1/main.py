@@ -81,7 +81,8 @@ if __name__ == "__main__":
             i = int(input("Input -> "))
             board.move(i)
             if board.done() is True:
-                print("You have won!!!")
+                print("\nYou have won!!!")
+                print(board)
                 break
         except IndexError:
             print("! Invalid move. Please try again.")
