@@ -17,8 +17,13 @@ class Board:
     }
 
     def __init__(self, *args, **kwargs):
-        self.zero_pos = [2, 2]
-        self.board = list(*args, **kwargs)
+        board = self.board = list(*args, **kwargs)
+
+        # identify zero_pos
+        for row_num in range(3):
+            for col_num in range(3):
+                if board[row_num][col_num] == 0:
+                    self.zero_pos = [row_num, col_num]
 
     def move(self, from_where: int) -> None:
         if self.check_input(from_where) is False:

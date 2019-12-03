@@ -21,7 +21,6 @@ The goal of the game is to reach this board:
 
 ### Different starting board
 To start with a different board change the `board` on lines `79-82`. <br>
-Be aware to also change the `zero_pos` in line `20`.
 
 ### getting started
 1. Have python [installed](https://wiki.python.org/moin/BeginnersGuide/Download)
