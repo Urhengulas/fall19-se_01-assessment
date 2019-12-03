@@ -1,2 +1,2 @@
-run-ex1:
-	python ex1/main.py
+run:
+	python -m ex1.game
