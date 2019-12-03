@@ -3,13 +3,6 @@ import logging
 
 class Board:
 
-    win_board = [
-        [1,  2,  3,  4],
-        [5,  6,  7,  8],
-        [9,  10, 11, 12],
-        [13, 14, 15, 0]
-    ]
-
     move_direction = {
         8: (-1, 0),
         2: (1, 0),
@@ -23,6 +16,9 @@ class Board:
         board = self.board = list(*args, **kwargs)
 
         dim = self.dimensions = (len(board), len(board[0]))
+
+        win_board = self.win_board = self.gen_win_board(dim)
+        logging.info(f"win_board={win_board}")
 
         # identify zero_pos
         for row_num in range(dim[0]):
@@ -73,6 +69,19 @@ class Board:
         if input not in [2, 4, 6, 8]:
             return False
         return True
+
+    def gen_win_board(self, dim: (int, int)) -> list:
+        nums = [i for i in range(dim[0]*dim[1])]
+        nums.append(0)
+        i = 1
+        ret = []
+        for _ in range(dim[0]):
+            tmp = []
+            for _ in range(dim[1]):
+                tmp.append(nums[i])
+                i += 1
+            ret.append(tmp)
+        return ret
 
     def __repr__(self):
         for row in self.board:
