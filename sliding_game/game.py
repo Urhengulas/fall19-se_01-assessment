@@ -1,5 +1,5 @@
 
-from .board import Board
+from .board import Board, gen_board
 
 
 def play_games(max_games: int):
@@ -38,16 +38,6 @@ def play_game(board: Board):
         except KeyboardInterrupt:
             print("Received KeyboardInterrupt")
             break
-
-
-def gen_board():
-    board = Board([
-        [1, 2, 3, 4],
-        [5, 6, 7, 8],
-        [9, 10, 11, 12],
-        [13, 14, 15, 0]
-    ])
-    return board
 
 
 if __name__ == "__main__":

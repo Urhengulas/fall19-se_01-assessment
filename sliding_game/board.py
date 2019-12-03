@@ -48,6 +48,8 @@ class Board:
 
         self.zero_pos = other_pos
 
+        return self.done()
+
     def done(self) -> bool:
         if self.board == self.win_board:
             return True
@@ -83,3 +85,12 @@ class Board:
         for row in self.board:
             print(row)
         return ""
+
+
+def gen_board():
+    return Board([
+        [1, 2, 3, 0],
+        [5, 6, 7, 4],
+        [9, 10, 11, 8],
+        [13, 14, 15, 12]
+    ])
